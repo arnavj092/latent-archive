@@ -81,3 +81,6 @@ footer{background:linear-gradient(180deg,rgba(14,15,17,.92),rgba(8,9,11,.98))}
 .card.premium::after{background:conic-gradient(from 0deg,rgba(214,38,61,.34),rgba(240,162,74,.24),rgba(228,93,69,.27),rgba(214,38,61,.34))}
 .premium-badge{position:absolute;top:.8rem;left:.8rem;z-index:6;padding:.34rem .5rem;border:1px solid rgba(255,190,104,.35);background:rgba(9,9,10,.68);backdrop-filter:blur(10px);color:#ffd19d;font-size:.62rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
 @media(prefers-reduced-motion:reduce){.card.premium::before,.card.premium::after{animation:none}}
+
+.card.premium{overflow:visible}
+.card.premium .media{border-radius:12px 12px 0 0}
