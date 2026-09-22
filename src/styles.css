@@ -138,3 +138,9 @@ footer{background:linear-gradient(180deg,rgba(14,15,17,.92),rgba(8,9,11,.98))}
   .auth-card{padding:1.25rem;border-radius:13px}
   .auth-card h1{font-size:2.15rem}
 }
+
+.otp-label{color:#9a948f;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.otp-boxes{display:grid;grid-template-columns:repeat(6,1fr);gap:.55rem}
+.otp-digit{width:100%!important;height:56px!important;padding:0!important;text-align:center;font-size:1.35rem;font-weight:800;border-radius:9px!important}
+.otp-digit:focus{border-color:rgba(214,38,61,.65)!important;box-shadow:0 0 0 3px rgba(214,38,61,.08)!important}
+@media(max-width:560px){.otp-boxes{gap:.42rem}.otp-digit{height:52px!important;font-size:1.2rem}}
