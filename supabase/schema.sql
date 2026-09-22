@@ -179,3 +179,8 @@ with check (bucket_id='episode-thumbnails' and public.is_admin());
 drop policy if exists admin_thumbnail_delete on storage.objects;
 create policy admin_thumbnail_delete on storage.objects for delete to authenticated
 using (bucket_id='episode-thumbnails' and public.is_admin());
+
+
+-- Lock administrator status to the database owner workflow.
+revoke update on public.profiles from anon, authenticated;
+grant update (name, avatar_url, last_seen_at) on public.profiles to authenticated;
