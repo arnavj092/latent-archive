@@ -144,3 +144,5 @@ footer{background:linear-gradient(180deg,rgba(14,15,17,.92),rgba(8,9,11,.98))}
 .otp-digit{width:100%!important;height:56px!important;padding:0!important;text-align:center;font-size:1.35rem;font-weight:800;border-radius:9px!important}
 .otp-digit:focus{border-color:rgba(214,38,61,.65)!important;box-shadow:0 0 0 3px rgba(214,38,61,.08)!important}
 @media(max-width:560px){.otp-boxes{gap:.42rem}.otp-digit{height:52px!important;font-size:1.2rem}}
+
+.otp-hint{margin-top:-.25rem;color:#76716d;font-size:.75rem;line-height:1.45;text-align:center}
