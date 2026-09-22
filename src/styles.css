@@ -146,3 +146,11 @@ footer{background:linear-gradient(180deg,rgba(14,15,17,.92),rgba(8,9,11,.98))}
 @media(max-width:560px){.otp-boxes{gap:.42rem}.otp-digit{height:52px!important;font-size:1.2rem}}
 
 .otp-hint{margin-top:-.25rem;color:#76716d;font-size:.75rem;line-height:1.45;text-align:center}
+
+.auth-card-single{position:relative;overflow:hidden}
+.auth-card-single::before{content:"";position:absolute;width:220px;height:220px;right:-110px;top:-125px;border-radius:50%;background:radial-gradient(circle,rgba(214,38,61,.13),transparent 68%);pointer-events:none}
+.auth-badge{display:inline-flex;align-items:center;min-height:26px;padding:0 .55rem;margin:.2rem 0 .2rem;border:1px solid rgba(214,38,61,.24);border-radius:999px;background:rgba(214,38,61,.055);color:#d98c91;font-size:.62rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.auth-card-single h1{margin-top:.65rem}
+.auth-card-single .oauth-button{margin-top:.25rem}
+.auth-coming{display:flex;align-items:center;justify-content:center;gap:.5rem;margin:1rem 0 0;padding:.7rem .85rem;border:1px solid rgba(164,151,145,.13);border-radius:9px;background:rgba(255,255,255,.018);color:#817b76;font-size:.74rem}
+.auth-dot{width:6px;height:6px;border-radius:50%;background:#d7263d;box-shadow:0 0 12px rgba(214,38,61,.55)}
