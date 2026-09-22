@@ -192,3 +192,8 @@ begin
   return new;
 end;
 $$;
+
+
+-- Lock administrator status to the database owner workflow.
+revoke update on public.profiles from anon, authenticated;
+grant update (name, avatar_url, last_seen_at) on public.profiles to authenticated;
