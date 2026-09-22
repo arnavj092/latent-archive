@@ -1,0 +1,1 @@
+Pages is configured to deploy the independent Latent Archive site through GitHub Actions.
