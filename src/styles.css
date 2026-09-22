@@ -32,3 +32,25 @@ footer{background:linear-gradient(180deg,rgba(12,14,19,.88),rgba(8,10,14,.96));b
 .text:hover{border-color:rgba(245,67,176,.75)}
 .btn.solid{box-shadow:0 10px 30px rgba(0,0,0,.22)}
 .btn.outline,.account,.icon,.mobile{background:rgba(20,23,30,.62);border-color:rgba(132,143,164,.19)}
+
+
+/* Premium content treatment */
+.card{position:relative;isolation:isolate;overflow:hidden;border-radius:14px}
+.card.premium{border-color:transparent;box-shadow:0 22px 65px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05)}
+.card.premium::before{
+  content:"";position:absolute;inset:0;padding:1.5px;border-radius:inherit;
+  background:conic-gradient(from 0deg,#ff4c4c 0deg,#f6b642 80deg,#ff6a45 145deg,#b51f32 220deg,#ff4b64 300deg,#f6b642 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:.95;animation:premium-spin 6s linear infinite;z-index:3;pointer-events:none
+}
+.card.premium::after{
+  content:"";position:absolute;inset:-22%;border-radius:inherit;
+  background:conic-gradient(from 0deg,rgba(255,73,80,.36),rgba(244,177,61,.22),rgba(255,102,65,.28),rgba(255,73,80,.36));
+  filter:blur(28px);opacity:.38;animation:premium-spin 7s linear infinite reverse;z-index:-1;pointer-events:none
+}
+.card.premium .card-body{position:relative;z-index:4}
+.card.premium .play{box-shadow:0 0 0 1px rgba(255,255,255,.16),0 12px 34px rgba(255,72,79,.16)}
+.card.premium .meta{color:#ffb34e}
+@keyframes premium-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.card.premium::before,.card.premium::after{animation:none}}
