@@ -585,3 +585,131 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
   .card:hover{transform:none;border-color:var(--line)}
   .play{box-shadow:0 8px 22px rgba(0,0,0,.35)}
 }
+
+
+/* =========================================================
+   AUTHENTICATED PLAYBACK GATE
+   ========================================================= */
+.player-locked{position:relative;overflow:hidden;min-height:56.25vw;background:#08090a}
+.watch-gate{
+  position:relative;
+  min-height:100%;
+  aspect-ratio:16/9;
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(70% 90% at 50% 48%,rgba(215,38,61,.18),transparent 62%),
+    linear-gradient(135deg,#111315 0%,#0a0b0d 52%,#151113 100%);
+}
+.watch-gate::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:44px 44px;
+  opacity:.22;
+  mask-image:linear-gradient(180deg,#000,transparent 82%);
+}
+.watch-gate-glow{
+  position:absolute;width:62%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(215,38,61,.20),rgba(215,38,61,.06) 35%,transparent 70%);
+  filter:blur(18px);
+  animation:watch-glow 4s ease-in-out infinite;
+  z-index:-1;
+}
+.watch-gate-content{
+  width:min(520px,calc(100% - 32px));
+  padding:24px;
+  text-align:center;
+  border:1px solid rgba(240,232,223,.12);
+  border-radius:14px;
+  background:rgba(9,10,11,.66);
+  box-shadow:0 30px 80px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.04);
+  backdrop-filter:blur(16px);
+}
+.watch-gate-content h2{
+  margin:8px 0 8px;
+  font-size:clamp(1.8rem,5vw,3.3rem);
+  line-height:.96;
+  letter-spacing:-.055em;
+}
+.watch-gate-content p{
+  max-width:420px;
+  margin:0 auto 18px;
+  color:#9b968f;
+  font-size:.82rem;
+  line-height:1.65;
+}
+.google-signin-wrap{display:grid;justify-items:center;gap:8px}
+.google-signin{
+  width:100%;
+  max-width:300px;
+  height:58px;
+  padding:4px;
+  border:0;
+  border-radius:999px;
+  background:linear-gradient(#e9e9e9,#e9e9e9 50%,#fff);
+  box-shadow:0 1px 0 rgba(255,255,255,.7);
+  cursor:pointer;
+  transition:transform .2s ease,filter .2s ease;
+}
+.google-signin:hover:not(:disabled){transform:translateY(-1px)}
+.google-signin:active:not(:disabled){transform:translateY(0)}
+.google-signin:disabled{opacity:.72;cursor:wait}
+.google-signin-inner{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border-radius:999px;
+  background:linear-gradient(#f4f4f4,#fefefe);
+  color:#101010;
+  font-size:16px;
+  font-weight:700;
+  box-shadow:
+    0 0 1px rgba(0,0,0,.07),
+    0 0 1px rgba(0,0,0,.05),
+    0 3px 3px rgba(0,0,0,.25),
+    0 1px 3px rgba(0,0,0,.12);
+  transition:background .2s ease,box-shadow .2s ease,color .2s ease;
+}
+.google-signin:hover:not(:disabled) .google-signin-inner{
+  background:linear-gradient(#e2e2e2,#fefefe);
+  color:#2563c7;
+  box-shadow:0 1px 2px rgba(0,0,0,.10);
+}
+.google-signin .google-icon{width:22px;height:22px;flex:0 0 auto}
+.google-signin-status{color:#cf989b;font-size:.68rem;text-align:center}
+.oauth-button{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+@keyframes watch-glow{
+  0%,100%{transform:scale(.96);opacity:.78}
+  50%{transform:scale(1.04);opacity:1}
+}
+@media(max-width:699px){
+  .player-locked{min-height:56.25vw}
+  .watch-gate-content{
+    width:calc(100% - 20px);
+    padding:18px 14px;
+    border-radius:11px;
+  }
+  .watch-gate-content h2{font-size:1.8rem}
+  .watch-gate-content p{font-size:.72rem;line-height:1.52;margin-bottom:14px}
+  .google-signin{height:52px;max-width:270px}
+  .google-signin-inner{font-size:14px;gap:8px}
+  .google-signin .google-icon{width:20px;height:20px}
+}
+@media(max-width:390px){
+  .watch-gate-content{padding:15px 11px}
+  .watch-gate-content h2{font-size:1.55rem}
+  .watch-gate-content p{font-size:.66rem;margin-bottom:10px}
+  .google-signin{height:48px;max-width:250px}
+  .google-signin-inner{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .watch-gate-glow{animation:none}
+}
