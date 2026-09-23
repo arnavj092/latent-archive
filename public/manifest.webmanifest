@@ -1,0 +1,14 @@
+{
+  "name":"Latent Archive",
+  "short_name":"Latent Archive",
+  "description":"Browse India’s Got Latent episodes, bonus content and behind-the-scenes entries.",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#0a0b0c",
+  "theme_color":"#0a0b0c",
+  "orientation":"portrait-primary",
+  "icons":[
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
