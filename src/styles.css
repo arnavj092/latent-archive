@@ -936,3 +936,52 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     aspect-ratio:auto;
   }
 }
+
+
+/* Adsterra native banner — intentionally quiet and responsive */
+.ad-slot{
+  width:min(100%,760px);
+  min-height:36px;
+  margin:30px auto 6px;
+  padding:0 8px;
+  overflow:hidden;
+  text-align:center;
+}
+.ad-slot .ad-label{
+  display:block;
+  margin-bottom:7px;
+  color:#615d58;
+  font-size:.52rem;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.ad-slot > div{
+  width:100%;
+  min-height:24px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+.home-intro + .ad-slot{
+  margin-top:24px;
+  margin-bottom:2px;
+}
+.episode-copy > .ad-slot{
+  margin-top:24px;
+  margin-bottom:20px;
+}
+@media(max-width:699px){
+  .ad-slot{
+    width:100%;
+    min-height:30px;
+    margin:24px auto 0;
+    padding:0 10px;
+  }
+  .ad-slot .ad-label{
+    margin-bottom:5px;
+    font-size:.48rem;
+  }
+  .home-intro + .ad-slot{margin-top:18px}
+  .episode-copy > .ad-slot{margin-top:18px;margin-bottom:14px}
+}
