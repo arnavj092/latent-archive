@@ -985,3 +985,27 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
   .home-intro + .ad-slot{margin-top:18px}
   .episode-copy > .ad-slot{margin-top:18px;margin-bottom:14px}
 }
+/* Quiet secondary catalog ad: kept at the bottom so it does not interrupt browsing. */
+.compact-ad-slot{
+  width:320px;
+  min-height:62px;
+  margin:44px auto 8px;
+  padding:0;
+  opacity:.82;
+}
+.compact-ad-slot > div{
+  min-height:50px;
+  width:320px;
+  margin:0 auto;
+}
+@media(max-width:699px){
+  .compact-ad-slot{
+    width:320px;
+    max-width:calc(100% - 24px);
+    margin:38px auto 8px;
+  }
+  .compact-ad-slot > div{
+    width:320px;
+    max-width:100%;
+  }
+}
