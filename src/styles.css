@@ -1328,3 +1328,105 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     margin:0 auto;
   }
 }
+
+
+/* Compact Instagram credit — visible in the footer without competing with archive content. */
+.footer-right{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:1.1rem;
+  flex-wrap:wrap;
+}
+.insta-follow{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:130px;
+  height:35px;
+  border:1px solid #ffb700;
+  border-radius:30px;
+  background:#fff;
+  overflow:hidden;
+  color:#171717;
+  text-decoration:none;
+  isolation:isolate;
+  box-shadow:0 8px 22px rgba(0,0,0,.14);
+}
+.insta-follow-text{
+  position:relative;
+  z-index:2;
+  margin-left:20%;
+  font-size:15px;
+  font-weight:650;
+  letter-spacing:-.01em;
+  transition:opacity .25s ease,transform .5s ease;
+}
+.insta-follow-hover-text{
+  position:absolute;
+  z-index:2;
+  left:-50px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#fff;
+  font-size:14px;
+  font-weight:750;
+  white-space:nowrap;
+  transition:transform .6s ease;
+}
+.insta-follow-icon{
+  position:absolute;
+  z-index:3;
+  left:0;
+  top:0;
+  width:35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
+  transition:transform .5s ease;
+}
+.insta-follow-icon::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:30px;
+  background:inherit;
+  transform:translateX(-95px);
+}
+.insta-follow-icon svg{
+  width:19px;
+  height:19px;
+  stroke:#fff;
+  stroke-width:1.9;
+}
+.insta-follow:hover .insta-follow-icon{transform:translateX(95px)}
+.insta-follow:hover .insta-follow-text{
+  opacity:0;
+  transform:translateX(28px);
+}
+.insta-follow:hover .insta-follow-hover-text{
+  transform:translate(74px,-50%);
+}
+.insta-follow:active{transform:scale(1.03)}
+.insta-follow:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:3px;
+}
+@media(max-width:900px){
+  .footer-right{
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-top:1.1rem;
+  }
+}
+@media(max-width:560px){
+  .footer-right{
+    display:grid;
+    justify-content:start;
+    gap:.9rem;
+  }
+}
