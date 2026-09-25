@@ -1239,3 +1239,39 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
   }
   .admin-upload-header .admin-new{width:100%}
 }
+/* Mobile hero/premium polish: keep highlighted borders crisp instead of rotating. */
+@media(max-width:699px){
+  .card.premium{
+    overflow:hidden;
+    border-color:rgba(215,38,61,.38);
+    box-shadow:0 14px 34px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .card.premium::before{
+    opacity:.7;
+    animation:none;
+    background:linear-gradient(135deg,rgba(215,38,61,.9),rgba(245,151,65,.65),rgba(215,38,61,.45));
+  }
+  .card.premium::after{
+    display:none;
+  }
+
+  /* Native ad becomes a quiet bottom slot on phones; it no longer pushes content vertically. */
+  .home-intro + .section + .ad-slot{
+    margin-top:18px;
+    margin-bottom:2px;
+    max-height:76px;
+    min-height:0;
+    overflow:hidden;
+  }
+  .home-intro + .section + .ad-slot > div{
+    min-height:50px;
+    max-height:50px;
+    overflow:hidden;
+  }
+}
+@media(min-width:700px){
+  .home-intro + .section + .ad-slot{
+    margin-top:22px;
+    margin-bottom:8px;
+  }
+}
