@@ -955,7 +955,7 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
   min-height:36px;
   margin:30px auto 6px;
   padding:0 8px;
-  overflow:hidden;
+  overflow:visible;
   text-align:center;
 }
 .ad-slot .ad-label{
@@ -978,9 +978,10 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
   margin-top:24px;
   margin-bottom:2px;
 }
-.episode-copy > .ad-slot{
-  margin-top:24px;
-  margin-bottom:20px;
+.native-ad-slot{
+  margin-top:54px;
+  margin-bottom:16px;
+  padding-bottom:4px;
 }
 @media(max-width:699px){
   .ad-slot{
@@ -994,30 +995,9 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     font-size:.48rem;
   }
   .home-intro + .ad-slot{margin-top:18px}
-  .episode-copy > .ad-slot{margin-top:18px;margin-bottom:14px}
-}
-/* Quiet secondary catalog ad: kept at the bottom so it does not interrupt browsing. */
-.compact-ad-slot{
-  width:320px;
-  min-height:62px;
-  margin:44px auto 8px;
-  padding:0;
-  opacity:.82;
-}
-.compact-ad-slot > div{
-  min-height:50px;
-  width:320px;
-  margin:0 auto;
-}
-@media(max-width:699px){
-  .compact-ad-slot{
-    width:320px;
-    max-width:calc(100% - 24px);
-    margin:38px auto 8px;
-  }
-  .compact-ad-slot > div{
-    width:320px;
-    max-width:100%;
+  .native-ad-slot{
+    margin-top:42px;
+    margin-bottom:14px;
   }
 }
 /* Control Room dashboard */
@@ -1302,12 +1282,7 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     animation:none !important;
   }
 
-  /* Third-party ads currently produce oversized/inappropriate mobile creatives.
-     Keep the mobile browsing experience clean; desktop placements remain unchanged. */
-  .ad-slot,
-  .compact-ad-slot{
-    display:none !important;
-  }
+  /* Native ad remains available on mobile; it is intentionally placed after the main content. */
 }
 
 
@@ -1325,37 +1300,7 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
   box-shadow:0 26px 74px rgba(0,0,0,.32),0 0 34px rgba(214,38,61,.11),inset 0 1px 0 rgba(255,255,255,.05);
 }
 
-/* Keep the catalog banner available on every viewport, including mobile. */
-.compact-ad-slot{
-  display:block!important;
-  visibility:visible!important;
-  opacity:1;
-}
-@media(max-width:699px){
-  .compact-ad-slot{
-    display:block!important;
-    visibility:visible!important;
-    width:320px;
-    max-width:calc(100% - 24px);
-    min-height:62px;
-    margin:34px auto 10px;
-    padding:0;
-  }
-  .compact-ad-slot > div{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    width:320px;
-    max-width:100%;
-    min-height:50px;
-    margin:0 auto;
-  }
-}
-
-
-/* Mobile ads restored: both the native placement and the 320x50 banner
-   must remain available on phones. The ad networks decide whether to fill;
-   our layout must not hide or clip the slots. */
+/* Native ad visibility on mobile; no fixed banner slot remains. */
 @media(max-width:699px){
   .ad-slot{
     display:block!important;
@@ -1380,25 +1325,6 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     min-height:50px;
     max-height:none;
     overflow:visible;
-    margin:0 auto;
-  }
-  .compact-ad-slot{
-    width:320px!important;
-    max-width:calc(100% - 24px)!important;
-    min-height:62px!important;
-    margin:34px auto 10px!important;
-    padding:0!important;
-    overflow:visible!important;
-  }
-  .compact-ad-slot > div{
-    width:320px!important;
-    max-width:100%!important;
-    min-height:50px!important;
-    max-height:none!important;
-    overflow:visible!important;
-    display:flex!important;
-    justify-content:center;
-    align-items:flex-start;
     margin:0 auto;
   }
 }
