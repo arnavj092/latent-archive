@@ -1275,3 +1275,26 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     margin-bottom:8px;
   }
 }
+
+
+/* FINAL MOBILE CLEANUP — keep premium cards crisp and remove intrusive third-party creatives. */
+@media(max-width:699px){
+  /* Premium highlight stays as a clean, fixed border on phones. */
+  .card.premium{
+    overflow:hidden !important;
+    border:1px solid rgba(215,38,61,.38) !important;
+    box-shadow:0 14px 34px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.04) !important;
+  }
+  .card.premium::before,
+  .card.premium::after{
+    display:none !important;
+    animation:none !important;
+  }
+
+  /* Third-party ads currently produce oversized/inappropriate mobile creatives.
+     Keep the mobile browsing experience clean; desktop placements remain unchanged. */
+  .ad-slot,
+  .compact-ad-slot{
+    display:none !important;
+  }
+}
