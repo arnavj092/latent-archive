@@ -76,9 +76,20 @@ footer{background:linear-gradient(180deg,rgba(14,15,17,.92),rgba(8,9,11,.98))}
 .hero h1 span{color:#c5beb7}
 
 /* Premium loop: restrained crimson -> ember -> warm gold */
-.card.premium{border-color:transparent;box-shadow:0 24px 70px rgba(0,0,0,.30),0 0 34px rgba(214,38,61,.08),inset 0 1px 0 rgba(255,255,255,.05)}
-.card.premium::before{background:conic-gradient(from 0deg,var(--premium-accent,#d7263d) 0deg,#f0a24a 92deg,#e45d45 170deg,#a51f34 248deg,#ef8450 312deg,var(--premium-accent,#d7263d) 360deg)}
-.card.premium::after{background:conic-gradient(from 0deg,rgba(214,38,61,.34),rgba(240,162,74,.24),rgba(228,93,69,.27),rgba(214,38,61,.34))}
+.card.premium{
+  border-color:transparent;
+  box-shadow:0 24px 70px rgba(0,0,0,.30),0 0 30px rgba(214,38,61,.08),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.card.premium::before{
+  background:linear-gradient(135deg,var(--premium-accent,#d7263d) 0%,#f0a24a 48%,#d85a43 72%,var(--premium-accent,#d7263d) 100%);
+  opacity:.92;
+  animation:none;
+}
+.card.premium::after{
+  background:radial-gradient(circle at 50% 0%,rgba(214,38,61,.24),transparent 58%),linear-gradient(135deg,rgba(214,38,61,.20),rgba(240,162,74,.10),rgba(214,38,61,.20));
+  opacity:.34;
+  animation:none;
+}
 .premium-badge{position:absolute;top:.8rem;left:.8rem;z-index:6;padding:.34rem .5rem;border:1px solid rgba(255,190,104,.35);background:rgba(9,9,10,.68);backdrop-filter:blur(10px);color:#ffd19d;font-size:.62rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
 @media(prefers-reduced-motion:reduce){.card.premium::before,.card.premium::after{animation:none}}
 
@@ -1296,5 +1307,47 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
   .ad-slot,
   .compact-ad-slot{
     display:none !important;
+  }
+}
+
+
+/* Final premium-card stability fix: the premium/bonus accent is intentionally static.
+   No rotating border, no moving glow, and no layout-shifting animation. */
+.card.premium::before,
+.card.premium::after{
+  animation:none!important;
+  transform:none!important;
+}
+.card.premium{
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.card.premium:hover{
+  box-shadow:0 26px 74px rgba(0,0,0,.32),0 0 34px rgba(214,38,61,.11),inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* Keep the catalog banner available on every viewport, including mobile. */
+.compact-ad-slot{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1;
+}
+@media(max-width:699px){
+  .compact-ad-slot{
+    display:block!important;
+    visibility:visible!important;
+    width:320px;
+    max-width:calc(100% - 24px);
+    min-height:62px;
+    margin:34px auto 10px;
+    padding:0;
+  }
+  .compact-ad-slot > div{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    width:320px;
+    max-width:100%;
+    min-height:50px;
+    margin:0 auto;
   }
 }
