@@ -1351,3 +1351,54 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     margin:0 auto;
   }
 }
+
+
+/* Mobile ads restored: both the native placement and the 320x50 banner
+   must remain available on phones. The ad networks decide whether to fill;
+   our layout must not hide or clip the slots. */
+@media(max-width:699px){
+  .ad-slot{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    width:100%;
+    min-height:58px;
+    max-height:none;
+    margin:24px auto 8px;
+    padding:0 10px;
+    overflow:visible;
+  }
+  .ad-slot .ad-label{
+    display:block;
+    margin-bottom:5px;
+  }
+  .ad-slot > div{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    width:100%;
+    min-height:50px;
+    max-height:none;
+    overflow:visible;
+    margin:0 auto;
+  }
+  .compact-ad-slot{
+    width:320px!important;
+    max-width:calc(100% - 24px)!important;
+    min-height:62px!important;
+    margin:34px auto 10px!important;
+    padding:0!important;
+    overflow:visible!important;
+  }
+  .compact-ad-slot > div{
+    width:320px!important;
+    max-width:100%!important;
+    min-height:50px!important;
+    max-height:none!important;
+    overflow:visible!important;
+    display:flex!important;
+    justify-content:center;
+    align-items:flex-start;
+    margin:0 auto;
+  }
+}
