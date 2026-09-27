@@ -1430,3 +1430,110 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
     gap:.9rem;
   }
 }
+
+
+/* =========================================================
+   APP SHELL V1 — cinematic boot / app polish
+   ========================================================= */
+
+.boot-splash{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:0;
+  background:
+    radial-gradient(42% 34% at 50% 48%,rgba(215,38,61,.105),transparent 72%),
+    #090a0c;
+  color:#f3eee8;
+  pointer-events:none;
+  animation:boot-splash-out .62s cubic-bezier(.22,.8,.24,1) .72s forwards;
+}
+.boot-splash-glow{
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(215,38,61,.13),transparent 68%);
+  filter:blur(8px);
+  animation:boot-glow-in .8s ease-out both;
+}
+.boot-splash-mark{
+  position:relative;
+  width:78px;
+  height:78px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(215,38,61,.52);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(31,16,19,.94),rgba(11,12,14,.96));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.025) inset,
+    0 22px 70px rgba(0,0,0,.48),
+    0 0 46px rgba(215,38,61,.13);
+  transform:translateY(8px) scale(.94);
+  opacity:0;
+  animation:boot-mark-in .72s cubic-bezier(.18,.9,.25,1) .08s forwards;
+}
+.boot-splash-mark::before{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:1px solid rgba(255,255,255,.045);
+  border-radius:14px;
+}
+.boot-splash-mark span{
+  position:relative;
+  font-size:1.18rem;
+  font-weight:900;
+  letter-spacing:-.08em;
+}
+.boot-splash-rule{
+  width:92px;
+  height:1px;
+  margin-top:18px;
+  background:linear-gradient(90deg,transparent,rgba(215,38,61,.7),transparent);
+  transform:scaleX(0);
+  animation:boot-rule-in .55s ease-out .28s forwards;
+}
+.boot-splash-label{
+  margin-top:10px;
+  color:#6e6964;
+  font-size:.48rem;
+  font-weight:900;
+  letter-spacing:.28em;
+  transform:translateY(5px);
+  opacity:0;
+  animation:boot-label-in .5s ease-out .34s forwards;
+}
+@keyframes boot-mark-in{
+  0%{opacity:0;transform:translateY(8px) scale(.94)}
+  65%{opacity:1;transform:translateY(-1px) scale(1.015)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes boot-rule-in{to{transform:scaleX(1)}}
+@keyframes boot-label-in{to{opacity:1;transform:translateY(0)}}
+@keyframes boot-glow-in{
+  0%{opacity:0;transform:scale(.72)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes boot-splash-out{
+  0%{opacity:1;visibility:visible}
+  72%{opacity:1}
+  100%{opacity:0;visibility:hidden}
+}
+@media(prefers-reduced-motion:reduce){
+  .boot-splash,
+  .boot-splash-glow,
+  .boot-splash-mark,
+  .boot-splash-rule,
+  .boot-splash-label{
+    animation:none!important;
+  }
+  .boot-splash{
+    opacity:0;
+    visibility:hidden;
+  }
+}
