@@ -1698,3 +1698,42 @@ html.app-mode .premium-end h2{font-size:clamp(3.3rem,7vw,7rem);line-height:.84;l
  html.app-mode .premium-end{padding:92px 14px 145px}
  html.app-mode .premium-end h2{font-size:4rem}
 }
+
+/* PREMIUM V3 — restraint, correct category routing, controlled hero artwork, branded boot */
+html.app-mode .premium-hero-bg{background:
+  radial-gradient(circle at 72% 45%,rgba(215,38,61,.12),transparent 28%),
+  linear-gradient(120deg,#08090a,#0a0b0d 55%,#0b0b0c)}
+html.app-mode .premium-hero-art{
+  position:absolute;z-index:1;right:5%;top:18%;width:min(48vw,670px);height:min(58vh,570px);
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.1);border-radius:18px;overflow:hidden;
+  background:rgba(15,16,18,.48);box-shadow:0 40px 100px rgba(0,0,0,.45),0 0 80px rgba(215,38,61,.055);
+}
+html.app-mode .premium-hero-art img{
+  width:100%;height:100%;object-fit:contain;object-position:center;
+  transform:none;filter:saturate(.9) contrast(1.03);
+  padding:0;
+}
+html.app-mode .premium-hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.2)),linear-gradient(90deg,rgba(8,9,10,.05),transparent 30%)}
+html.app-mode .premium-hero-shade{z-index:1;background:linear-gradient(90deg,#08090a 0%,rgba(8,9,10,.92) 32%,rgba(8,9,10,.35) 62%,rgba(8,9,10,.5) 100%),linear-gradient(0deg,#08090a 0%,transparent 45%,rgba(8,9,10,.15) 100%)}
+html.app-mode .premium-hero-content{z-index:3}
+html.app-mode .premium-hero-stamp{z-index:3}
+html.app-mode .archive-pulse-row{cursor:pointer}
+html.app-mode .archive-pulse-row:hover{background:linear-gradient(90deg,rgba(255,255,255,.025),transparent)}
+html.app-mode .app-boot{background:#08090a}
+html.app-mode .app-boot-center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;min-width:190px}
+html.app-mode .app-boot-logo{width:68px;height:68px;object-fit:contain;filter:drop-shadow(0 16px 35px rgba(215,38,61,.16));opacity:0;animation:boot-logo-in .8s cubic-bezier(.2,.8,.2,1) .05s forwards}
+html.app-mode .app-boot-wordmark{font-size:.67rem;font-weight:850;letter-spacing:.28em;color:#ece6de;opacity:0;transform:translateY(7px);animation:boot-word-in .65s ease .34s forwards}
+html.app-mode .app-boot-line{width:100%;height:1px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:2px}
+html.app-mode .app-boot-line span{display:block;width:0;height:100%;background:#d7263d;animation:boot-line-in .72s cubic-bezier(.2,.8,.2,1) .42s forwards}
+html.app-mode .app-boot-sub{font-size:.48rem;letter-spacing:.19em;color:#67615c;opacity:0;animation:boot-sub-in .55s ease .57s forwards}
+@keyframes boot-logo-in{from{opacity:0;transform:scale(.72) rotate(-4deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes boot-word-in{to{opacity:1;transform:none}}
+@keyframes boot-line-in{to{width:100%}}
+@keyframes boot-sub-in{to{opacity:1}}
+@keyframes app-boot-out{to{opacity:0;visibility:hidden;pointer-events:none}}
+@media(max-width:700px){
+ html.app-mode .premium-hero-art{right:-9%;top:15%;width:88vw;height:43vh;border-radius:14px;opacity:.78}
+ html.app-mode .premium-hero-shade{background:linear-gradient(180deg,rgba(8,9,10,.12),rgba(8,9,10,.35) 38%,#08090a 82%),linear-gradient(90deg,rgba(8,9,10,.68),transparent)}
+ html.app-mode .premium-hero-content{padding-top:115px}
+}
