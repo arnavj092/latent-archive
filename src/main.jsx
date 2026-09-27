@@ -14,6 +14,27 @@ const go=p=>window.location.assign(BASE+p);
 
 const label=e=>[e.season?"Season "+e.season:"",e.episode_number?"Episode "+e.episode_number:""].filter(Boolean).join(" · ")||"Archive";
 
+function BootSplash(){
+  const[visible,setVisible]=useState(true);
+  useEffect(()=>{
+    const started=performance.now();
+    const finish=()=>{
+      const elapsed=performance.now()-started;
+      const delay=Math.max(0,720-elapsed);
+      window.setTimeout(()=>setVisible(false),delay);
+    };
+    const timer=window.setTimeout(finish,720);
+    return()=>window.clearTimeout(timer);
+  },[]);
+  if(!visible)return null;
+  return <div className="boot-splash" aria-hidden="true">
+    <div className="boot-splash-glow"/>
+    <div className="boot-splash-mark"><span>LA</span></div>
+    <div className="boot-splash-rule"/>
+    <div className="boot-splash-label">LATENT ARCHIVE</div>
+  </div>;
+}
+
 function Header(){const[open,setOpen]=useState(false);const nav=p=>{setOpen(false);go(p)};return <header className="site-header"><div className="head"><a className="brand" href={BASE+"/"}><span className="mark">LA</span><span className="brand-copy"><b>Latent Archive</b><small>Independent archive</small></span></a><nav className="desktop"><a href={BASE+"/episodes"}>Episodes</a><a href={BASE+"/search"}>Search</a><a href={BASE+"/about"}>About</a></nav><div className="actions"><a className="icon" href={BASE+"/search"} aria-label="Search"><Search size={18}/></a><a className="account" href={BASE+"/account"}><UserRound size={16}/><span>Account</span></a><button className="mobile" onClick={()=>setOpen(v=>!v)} aria-label="Menu">{open?<X size={20}/>:<Menu size={20}/>}</button></div></div>{open&&<nav className="mobile-nav"><button onClick={()=>nav("/episodes")}>Episodes</button><button onClick={()=>nav("/search")}>Search</button><button onClick={()=>nav("/about")}>About</button><button onClick={()=>nav("/account")}>Account</button></nav>}</header>}
 
 function InstagramFollowButton(){return <a className="insta-follow" href="https://www.instagram.com/arnav.nox/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" aria-label="Follow Arnav on Instagram"><span className="insta-follow-text">Follow me</span><span className="insta-follow-hover-text">@arnav.nox</span><span className="insta-follow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.7" r="1"/></svg></span></a>}
@@ -79,5 +100,5 @@ function Contact(){const[n,setN]=useState(""),[e,setE]=useState(""),[m,setM]=use
 function Copy({type}){const c={about:["ABOUT","Built for finding, not pretending.","Latent Archive is an independent index for episodes that the operator has permission to host, embed, or link.","What appears here","Published episode records, metadata, thumbnails, and authorized media sources.","What does not","No scraping, piracy, DRM bypassing, unauthorized mirrors, or download tools."],privacy:["PRIVACY","Your visit should stay proportional.","Latent Archive uses Supabase Auth to manage accounts. We collect only the account information needed to provide sign-in and account features.","Account data","Your email, optional profile name, account creation time, and last-seen timestamp may be stored to operate the account experience.","Usage measurement","The product records basic session activity such as page visits, approximate session duration, and signed-in video watch events to operate the archive and its admin analytics. It is not intended to build a personal advertising profile."],terms:["TERMS","Use the archive responsibly.","Only authorized media, embeds, thumbnails, and links may be added to the catalog.","Availability","Entries may disappear when source permissions change.","Accuracy","Episode metadata should be corrected when reliable information changes."]}[type];return <Shell><main className="page copy"><div className="eyebrow">{c[0]}</div><h1>{c[1]}</h1><p>{c[2]}</p><div className="copy-grid"><section><h2>{c[3]}</h2><p>{c[4]}</p></section><section><h2>{c[5]}</h2><p>{c[6]}</p></section></div></main></Shell>}
 
 function App(){const p=path();useEffect(()=>{if(p==="/")setPageMeta("Latent Archive — India’s Got Latent","Browse episodes, bonus content and behind-the-scenes entries in the Latent Archive.");else if(p==="/episodes")setPageMeta("Episodes — Latent Archive","Browse the published Latent Archive episode catalog.");else if(p==="/search")setPageMeta("Search — Latent Archive","Find an episode in the Latent Archive.");else if(p==="/about")setPageMeta("About — Latent Archive","About the independent Latent Archive and its content policy.");else if(p==="/privacy")setPageMeta("Privacy — Latent Archive","Latent Archive privacy information.");else if(p==="/terms")setPageMeta("Terms — Latent Archive","Latent Archive terms and usage information.")},[p]);if(p==="/")return <Home/>;if(p==="/admin")return <Admin/>;if(p==="/episodes")return <Episodes/>;if(p==="/search")return <SearchPage/>;if(p.startsWith("/episodes/"))return <Episode/>;if(p==="/account")return <Account/>;if(p==="/auth/login"||p==="/auth/signup")return <Auth/>;if(p==="/contact")return <Contact/>;if(p==="/about")return <Copy type="about"/>;if(p==="/privacy")return <Copy type="privacy"/>;if(p==="/terms")return <Copy type="terms"/>;return <Shell><main className="page"><div className="empty"><div className="eyebrow">404</div><h1>Page not found.</h1><a className="btn solid" href={BASE+"/"}>Go home</a></div></main></Shell>}
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+ReactDOM.createRoot(document.getElementById("root")).render(<><BootSplash/><App/></>);
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register(BASE+"/sw.js").catch(()=>{}));}
