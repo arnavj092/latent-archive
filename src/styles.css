@@ -1815,3 +1815,14 @@ html.app-mode .app-boot-sub{
 @media(prefers-reduced-motion:reduce){
  html.app-mode .app-boot-logo-wrap,html.app-mode .app-boot-wordmark,html.app-mode .app-boot-line,html.app-mode .app-boot-sub,html.app-mode .app-boot-aura{animation:none;opacity:1;transform:none;filter:none}
 }
+
+/* Episode sort control */
+html.app-mode .sort-control{position:relative;display:flex;align-items:center}
+html.app-mode .sort-trigger{height:44px;display:inline-flex;align-items:center;gap:8px;padding:0 13px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.025);color:#d9d4ce;font:700 12px/1 Manrope,system-ui,sans-serif;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+html.app-mode .sort-trigger:hover,html.app-mode .sort-trigger.active{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+html.app-mode .sort-trigger:active{transform:scale(.98)}
+html.app-mode .sort-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:50;width:170px;padding:6px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(14,15,17,.97);box-shadow:0 20px 50px rgba(0,0,0,.5);backdrop-filter:blur(18px)}
+html.app-mode .sort-menu button{width:100%;height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border:0;border-radius:9px;background:transparent;color:#aaa6a0;font:650 11px/1 Manrope,system-ui,sans-serif;text-align:left;cursor:pointer}
+html.app-mode .sort-menu button:hover{background:rgba(255,255,255,.06);color:#eee}
+html.app-mode .sort-menu button.selected{background:rgba(217,16,27,.12);color:#f5f1eb}
+@media(max-width:700px){html.app-mode .sort-trigger{height:42px;width:44px;justify-content:center;padding:0}html.app-mode .sort-trigger span{display:none}html.app-mode .sort-menu{right:0;width:165px}}
