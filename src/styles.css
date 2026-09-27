@@ -1752,3 +1752,34 @@ html.app-mode .app-boot-sub{font-size:.48rem;letter-spacing:.19em;color:#67615c;
  html.app-mode .premium-hero-shade{background:linear-gradient(180deg,rgba(8,9,10,.12),rgba(8,9,10,.35) 38%,#08090a 82%),linear-gradient(90deg,rgba(8,9,10,.68),transparent)}
  html.app-mode .premium-hero-content{padding-top:115px}
 }
+
+/* STARTUP — faithful to the original V4 splash motion */
+html.app-mode .app-boot{
+  position:fixed!important;inset:0!important;z-index:99999!important;
+  display:grid!important;place-items:center!important;align-content:center!important;
+  background:#050505!important;color:#fff!important;overflow:hidden!important;
+  animation:none!important;visibility:visible!important;opacity:1;
+}
+html.app-mode .app-boot-aura{
+  position:absolute;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,16,27,.15),transparent 67%);
+  filter:blur(4px);pointer-events:none;
+}
+html.app-mode .app-boot-center{
+  position:relative;z-index:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;min-width:210px;
+}
+html.app-mode .app-boot-logo-wrap{width:88px;height:88px;display:grid;place-items:center}
+html.app-mode .app-boot-logo{width:100%;height:100%;object-fit:contain;filter:none!important;transform:none}
+html.app-mode .app-boot-wordmark{
+  margin-top:18px;font:800 11px/1 Manrope,system-ui,sans-serif;
+  letter-spacing:.28em;color:#fff;white-space:nowrap;
+}
+html.app-mode .app-boot-line{
+  width:42px;height:1px;margin-top:18px;background:#d9101b;
+  transform-origin:center;
+}
+html.app-mode .app-boot-sub{
+  margin-top:12px;color:#4f4f53;font:600 7px/1 Manrope,system-ui,sans-serif;
+  letter-spacing:.25em;white-space:nowrap;
+}
