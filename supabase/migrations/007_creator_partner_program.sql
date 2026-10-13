@@ -149,3 +149,25 @@ revoke all on function public.track_creator_referral_visit(text,uuid,text) from 
 grant execute on function public.track_creator_referral_visit(text,uuid,text) to anon, authenticated;
 revoke all on function public.claim_creator_referral(text) from public;
 grant execute on function public.claim_creator_referral(text) to authenticated;
+
+create or replace function public.link_creator_account()
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid := auth.uid();
+  v_email text;
+begin
+  if v_user_id is null then return; end if;
+  select lower(email) into v_email from auth.users
+  where id = v_user_id and email_confirmed_at is not null;
+  if v_email is null then return; end if;
+  update public.creator_partners
+  set auth_user_id = v_user_id, updated_at = now()
+  where lower(email) = v_email and auth_user_id is null and is_active = true;
+end;
+$$;
+revoke all on function public.link_creator_account() from public;
+grant execute on function public.link_creator_account() to authenticated;
