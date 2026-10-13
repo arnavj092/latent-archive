@@ -121,34 +121,41 @@ begin
 end;
 $$;
 
-create or replace function public.claim_creator_referral(p_slug text)
+drop function if exists public.claim_creator_referral(text);
+create or replace function public.claim_creator_referral(p_slug text, p_visitor_key uuid)
 returns void
 language plpgsql
 security definer
 set search_path = public
-as $$
+as $
 declare
   v_user_id uuid := auth.uid();
   v_creator public.creator_partners%rowtype;
   v_created_at timestamptz;
 begin
-  if v_user_id is null or p_slug is null then return; end if;
+  if v_user_id is null or p_slug is null or p_visitor_key is null then return; end if;
   select created_at into v_created_at from auth.users where id = v_user_id and email_confirmed_at is not null;
-  -- Do not attribute established accounts: the referred account must be less than 30 days old.
+  -- Only attribute a recent account that has a matching tracked referral visit.
   if v_created_at is null or v_created_at < now() - interval '30 days' then return; end if;
   select * into v_creator from public.creator_partners
   where lower(slug) = lower(left(p_slug, 40)) and is_active = true;
   if v_creator.id is null or v_creator.auth_user_id = v_user_id then return; end if;
+  if not exists (
+    select 1 from public.creator_referral_visits v
+    where v.creator_id = v_creator.id
+      and v.visitor_key = p_visitor_key
+      and v.created_at >= now() - interval '30 days'
+  ) then return; end if;
   insert into public.creator_referrals(creator_id, referred_user_id, status, commission_paise)
   values(v_creator.id, v_user_id, 'pending', v_creator.commission_paise_per_signup)
   on conflict (referred_user_id) do nothing;
 end;
-$$;
+$;
 
 revoke all on function public.track_creator_referral_visit(text,uuid,text) from public;
 grant execute on function public.track_creator_referral_visit(text,uuid,text) to anon, authenticated;
-revoke all on function public.claim_creator_referral(text) from public;
-grant execute on function public.claim_creator_referral(text) to authenticated;
+revoke all on function public.claim_creator_referral(text,uuid) from public;
+grant execute on function public.claim_creator_referral(text,uuid) to authenticated;
 
 create or replace function public.link_creator_account()
 returns void
