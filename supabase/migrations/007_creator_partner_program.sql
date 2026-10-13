@@ -127,7 +127,7 @@ returns void
 language plpgsql
 security definer
 set search_path = public
-as $
+as $$
 declare
   v_user_id uuid := auth.uid();
   v_creator public.creator_partners%rowtype;
@@ -150,7 +150,7 @@ begin
   values(v_creator.id, v_user_id, 'pending', v_creator.commission_paise_per_signup)
   on conflict (referred_user_id) do nothing;
 end;
-$;
+$$;
 
 revoke all on function public.track_creator_referral_visit(text,uuid,text) from public;
 grant execute on function public.track_creator_referral_visit(text,uuid,text) to anon, authenticated;
