@@ -144,7 +144,8 @@ begin
     select 1 from public.creator_referral_visits v
     where v.creator_id = v_creator.id
       and v.visitor_key = p_visitor_key
-      and v.created_at >= now() - interval '30 days'
+      and v.created_at <= v_created_at
+      and v.created_at >= v_created_at - interval '7 days'
   ) then return; end if;
   insert into public.creator_referrals(creator_id, referred_user_id, status, commission_paise)
   values(v_creator.id, v_user_id, 'pending', v_creator.commission_paise_per_signup)
