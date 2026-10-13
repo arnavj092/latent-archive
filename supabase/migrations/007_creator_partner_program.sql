@@ -133,7 +133,7 @@ declare
   v_created_at timestamptz;
 begin
   if v_user_id is null or p_slug is null then return; end if;
-  select created_at into v_created_at from auth.users where id = v_user_id;
+  select created_at into v_created_at from auth.users where id = v_user_id and email_confirmed_at is not null;
   -- Do not attribute established accounts: the referred account must be less than 30 days old.
   if v_created_at is null or v_created_at < now() - interval '30 days' then return; end if;
   select * into v_creator from public.creator_partners
