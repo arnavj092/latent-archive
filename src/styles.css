@@ -1455,3 +1455,7 @@ footer{margin-top:0;border-top:1px solid var(--line);background:#090a0b;box-shad
 
 /* Creator campaign guardrails */
 .creator-campaign-fields{display:grid;gap:12px;padding:16px;border:1px solid var(--line,rgba(255,255,255,.12));border-radius:14px;margin:8px 0 16px}.creator-campaign-fields h3{margin:0;font-size:1rem}.creator-campaign-fields>p{margin:0}.creator-campaign-fields label{display:grid;gap:6px}.creator-campaign-fields input:not([type=checkbox]){width:100%;min-width:0}.creator-campaign-fields .creator-checkbox{display:flex;align-items:center;gap:8px}
+
+/* Creator portal final polish */
+.creator-metrics{grid-template-columns:repeat(3,minmax(0,1fr));}.creator-two{grid-template-columns:minmax(0,1fr);max-width:680px;margin:16px 0;}.creator-help{display:inline!important;margin:0!important;color:#c7a3aa!important;cursor:help;font-size:11px!important}.creator-payout-note{background:rgba(153,65,83,.07);border-color:rgba(153,65,83,.28);transition:border-color .2s,background .2s}.creator-payout-note:hover{border-color:rgba(190,93,112,.5);background:rgba(153,65,83,.1)}.creator-page .btn{transition:transform .18s ease,border-color .18s ease,background .18s ease}.creator-page .btn:hover{transform:translateY(-1px);border-color:rgba(220,160,174,.6)}.creator-activity-panel{margin-top:18px}
+@media(max-width:700px){.creator-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.creator-metrics article{padding:14px}.creator-panel{padding:16px}.creator-two{max-width:none}}
