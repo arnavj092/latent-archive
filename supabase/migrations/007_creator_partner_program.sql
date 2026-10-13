@@ -64,7 +64,7 @@ revoke all on public.creator_payouts from anon, authenticated;
 grant select on public.creator_partners to authenticated;
 grant update (display_name, instagram_handle) on public.creator_partners to authenticated;
 grant select on public.creator_referral_visits, public.creator_referrals, public.creator_payouts to authenticated;
-grant insert, update, delete on public.creator_partners, public.creator_referrals, public.creator_payouts to authenticated;
+grant insert, update, delete on public.creator_referrals, public.creator_payouts to authenticated;
 grant insert on public.creator_referral_visits to authenticated;
 
 drop policy if exists creator_partners_select_self_or_admin on public.creator_partners;
@@ -171,3 +171,42 @@ end;
 $$;
 revoke all on function public.link_creator_account() from public;
 grant execute on function public.link_creator_account() to authenticated;
+
+create or replace function public.admin_save_creator(
+  p_id uuid,
+  p_email text,
+  p_display_name text,
+  p_instagram_handle text,
+  p_slug text,
+  p_commission_paise_per_signup integer,
+  p_is_active boolean
+)
+returns uuid
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare v_id uuid;
+begin
+  if not exists (select 1 from public.profiles where id = auth.uid() and is_admin = true) then
+    raise exception 'admin access required';
+  end if;
+  if p_email is null or position('@' in p_email) < 2 then raise exception 'valid email required'; end if;
+  if p_slug !~ '^[a-zA-Z0-9_-]{3,40}$' then raise exception 'slug must be 3-40 letters, numbers, underscores or hyphens'; end if;
+  if p_commission_paise_per_signup < 0 then raise exception 'commission cannot be negative'; end if;
+  if p_id is null then
+    insert into public.creator_partners(email,display_name,instagram_handle,slug,commission_paise_per_signup,is_active)
+    values(lower(trim(p_email)),left(trim(p_display_name),100),left(trim(p_instagram_handle),100),lower(trim(p_slug)),p_commission_paise_per_signup,p_is_active)
+    returning id into v_id;
+  else
+    update public.creator_partners set email=lower(trim(p_email)),display_name=left(trim(p_display_name),100),
+      instagram_handle=left(trim(p_instagram_handle),100),slug=lower(trim(p_slug)),
+      commission_paise_per_signup=p_commission_paise_per_signup,is_active=p_is_active,updated_at=now()
+    where id=p_id returning id into v_id;
+    if v_id is null then raise exception 'creator not found'; end if;
+  end if;
+  return v_id;
+end;
+$$;
+revoke all on function public.admin_save_creator(uuid,text,text,text,text,integer,boolean) from public;
+grant execute on function public.admin_save_creator(uuid,text,text,text,text,integer,boolean) to authenticated;
